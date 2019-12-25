@@ -1,4 +1,5 @@
 // const launchEditor = require('react-dev-utils/launchEditor')
+// TODO: use the react-dev-utils one once found a way to fix our problem
 const launchEditor = require('../utils/launchEditor')
 
 function CommandLaunchEditor(req, res) {
