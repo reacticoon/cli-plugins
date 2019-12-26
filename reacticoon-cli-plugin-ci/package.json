@@ -1,0 +1,7 @@
+{
+  "name": "reacticoon-cli-plugin-ci",
+  "version": "0.0.1",
+  "dependencies": {
+    "travis-ci": "^2.2.0"
+  }
+}
