@@ -4,8 +4,11 @@ var travis = new Travis({
 });
 
 function CommandTravisInfo(req, res) {
-  travis.repos("reacticoon", "reacticoon").get(function(err, ciResponse) {
-    res.json(ciResponse);
+  const { ownerName, repoName } = req.body.payload;
+
+  travis.repos(ownerName, repoName).get(function(err, ciResponse) {
+    const buildSvg = `https://api.travis-ci.org/${ownerName}/${repoName}.svg`;
+    res.json({ ownerName, repoName, buildSvg, ...ciResponse });
   });
 }
 
