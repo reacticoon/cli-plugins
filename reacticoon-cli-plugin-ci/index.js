@@ -8,6 +8,14 @@ const getCurrentProjectStateCommand = createServerCommand(
   {}
 );
 
+const initiateProjectCiCommand = createServerCommand(
+  "CI::PROJECT::INITIATE",
+  "Initiate continuous integration for the project",
+  "./server-commands/ininitate-project-ci",
+  {}
+);
+
+
 const getCiRepositoryInfosCommand = createServerCommand(
   "CI::REPOSITORY::INFOS",
   "Retrieve ci respository data",
@@ -28,6 +36,7 @@ module.exports = createReacticoonPlugin({
   commands: [],
   serverCommands: [
     getCurrentProjectStateCommand,
+    initiateProjectCiCommand,
     getCiRepositoryInfosCommand,
     getCiBuildInfosCommand
   ]

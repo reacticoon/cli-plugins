@@ -1,6 +1,7 @@
 function getState(pluginApi) {
   const hasTravisCi = pluginApi.hasProjectFile(".travis.yml");
   let configuration = null;
+  let rawConfiguration = null;
 
   if (hasTravisCi) {
     rawConfiguration = pluginApi.readProjectFile(".travis.yml");
