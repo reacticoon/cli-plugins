@@ -1,7 +1,13 @@
 const createReacticoonPlugin = require("create-reacticoon-app/plugin/createReacticoonPlugin");
 
 const ReacticoonCliPluginGit = createReacticoonPlugin(api => {
-
+  const getGitInformationServerCommand = api.createServerCommand(
+    'GIT::GIT_INFO',
+    'Retrieve app git information',
+    './server-commands/git-info',
+    {}
+  )
+  
   const startWebUICommand = api.createServerCommand(
     "GIT::WEB_UI::START",
     "Retrieve ci build data",
@@ -13,7 +19,7 @@ const ReacticoonCliPluginGit = createReacticoonPlugin(api => {
     checkup: [],
     generators: [],
     commands: [],
-    serverCommands: [startWebUICommand]
+    serverCommands: [getGitInformationServerCommand, startWebUICommand]
   };
 });
 

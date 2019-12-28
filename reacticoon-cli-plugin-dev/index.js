@@ -1,12 +1,6 @@
 const createReacticoonPlugin = require('create-reacticoon-app/plugin/createReacticoonPlugin')
 const createServerCommand = require('create-reacticoon-app/server/createServerCommand')
 
-const getGitInformationServerCommand = createServerCommand(
-  'DEV_TOOLS::GIT_INFO',
-  'Retrieve app git information',
-  './server-commands/git-info',
-  {}
-)
 
 const LaunchEditorServerCommand = createServerCommand(
   'DEV_TOOLS::LAUNCH_EDITOR',
@@ -28,5 +22,5 @@ module.exports = createReacticoonPlugin({
       path: './commands/',
     },
   ],
-  serverCommands: [getGitInformationServerCommand, LaunchEditorServerCommand],
+  serverCommands: [LaunchEditorServerCommand],
 })
