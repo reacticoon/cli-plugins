@@ -1,27 +1,7 @@
-function getState(pluginApi) {
-  const hasTravisCi = pluginApi.hasProjectFile(".travis.yml");
-  let configuration = null;
-  let rawConfiguration = null;
-
-  if (hasTravisCi) {
-    rawConfiguration = pluginApi.readProjectFile(".travis.yml");
-    configuration = rawConfiguration
-      ? pluginApi.parseYaml(rawConfiguration)
-      : null;
-  }
-
-  state = {
-    hasCi: hasTravisCi,
-    ciType: hasTravisCi ? "travis" : null,
-    configuration,
-    rawConfiguration
-  };
-
-  return state;
-}
+const getCurrentProjectState = require('../actions/getCurrentProjectState')
 
 function CommandCurrentProjectState(req, res, pluginApi) {
-  const state = getState(pluginApi);
+  const state = getCurrentProjectState(pluginApi);
   res.json(state);
 }
 

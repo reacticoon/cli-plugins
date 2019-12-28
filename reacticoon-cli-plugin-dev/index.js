@@ -9,7 +9,9 @@ const ReacticoonCliPluginDev = createReacticoonPlugin(api => {
   );
 
   return {
-    checkup: [],
+    checkup: [
+      './checks/checkReacticoonRouting'
+    ],
     generators: [],
     commands: [
       {

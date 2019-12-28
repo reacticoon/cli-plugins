@@ -30,7 +30,9 @@ const ReacticoonCliPluginCi = createReacticoonPlugin(api => {
   );
 
   return {
-    checkup: [],
+    checkup: [
+      './checks/checkHasCi.js'
+    ],
     generators: [],
     commands: [],
     serverCommands: [
