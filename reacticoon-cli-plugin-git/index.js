@@ -16,7 +16,10 @@ const ReacticoonCliPluginGit = createReacticoonPlugin(api => {
   );
 
   return {
-    checkup: [],
+    checkup: [
+      './checks/checkGit',
+      './checks/checkWebUi',
+    ],
     generators: [],
     commands: [],
     serverCommands: [getGitInformationServerCommand, startWebUICommand]

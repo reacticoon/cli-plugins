@@ -1,6 +1,4 @@
-const createCheck = require("create-reacticoon-app/checkup/utils/createCheck");
-
-const run = ({ check, warn }) => {
+const run = ({ check, warn, error }) => {
   check(
     1 == 1,
     `1 equal 1`,
@@ -8,14 +6,20 @@ const run = ({ check, warn }) => {
   );
 
   warn(
+    false,
+    '',
+    'This is a warning'
+  )
+
+  error(
     1 === '1',
     `1 equal '1'`,
     `1 does not equal '1'`
   );
 };
 
-module.exports = createCheck({
+module.exports = {
   name: "test checkup",
   description: "Check for Tests",
   run
-});
+};

@@ -2,8 +2,8 @@
  */
 function CommandStartWebUI(req, res, api) {
   //https://github.com/alberthier/git-webui
-  let command = api.getOption("webui.command", "git webui");
-  let url = api.getOption("webui.url", "git webui");
+  const command = api.getOption("webui.command", "git webui");
+  const url = api.getOption("webui.url", "git webui");
 
   try {
     if (
