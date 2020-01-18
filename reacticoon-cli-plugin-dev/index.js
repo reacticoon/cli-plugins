@@ -8,6 +8,13 @@ const ReacticoonCliPluginDev = createReacticoonPlugin(api => {
     {}
   );
 
+  const BuildInfoServerCommand = api.createServerCommand(
+    "BUILD::INFO",
+    "Retrieve info about the last build",
+    "./server-commands/build-info",
+    {}
+  );
+
   return {
     checkup: ["./checks/checkReacticoonRouting"],
     generators: [],
@@ -15,9 +22,14 @@ const ReacticoonCliPluginDev = createReacticoonPlugin(api => {
       {
         name: "devtools:server",
         path: "./commands/"
+      },
+      {
+        name: "build:info",
+        path: "./commands/"
       }
     ],
-    serverCommands: [LaunchEditorServerCommand]
+    serverCommands: [LaunchEditorServerCommand, BuildInfoServerCommand],
+    overrides: "./overrides"
   };
 });
 

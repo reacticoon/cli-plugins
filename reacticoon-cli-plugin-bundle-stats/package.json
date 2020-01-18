@@ -1,0 +1,7 @@
+{
+  "name": "reacticoon-cli-plugin-bundle-stats",
+  "version": "1.0.0",
+  "dependencies": {
+    "bundle-stats": "^1.15.5"
+  }
+}

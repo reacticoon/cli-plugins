@@ -11,10 +11,13 @@ function LighthouseReportHtmlAction(api) {
   );
 
   const jsonPath = `${reportFilePath}.report.json`;
+  const htmlPath = `${reportFilePath}.report.html`;
+
   return {
-    htmlPath: `${reportFilePath}.report.html`,
+    htmlPath,
     jsonPath,
-    jsonContent: api.readJsonFile(jsonPath)
+    jsonContent: api.readJsonFile(jsonPath),
+    htmlContent: api.readFile(htmlPath)
   };
 }
 
