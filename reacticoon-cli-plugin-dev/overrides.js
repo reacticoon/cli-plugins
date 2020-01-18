@@ -21,7 +21,8 @@ const getOnEmit = (api, options) => async (compilation, callback) => {
     // env
     // cf env-vars
     const reacticoonBuildInfo = {
-      builtAt: data.builtAt
+      builtAt: data.builtAt,
+      hash: data.hash
     };
 
     info(`Create reacticoon-build-info.json`, "build");
