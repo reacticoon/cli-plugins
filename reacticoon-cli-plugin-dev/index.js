@@ -9,15 +9,9 @@ const ReacticoonCliPluginDev = createReacticoonPlugin(api => {
   );
 
   return {
-    checkup: [
-      './checks/checkReacticoonRouting'
-    ],
+    checkup: ["./checks/checkReacticoonRouting"],
     generators: [],
     commands: [
-      {
-        name: "devtools:git-info",
-        path: "./commands/"
-      },
       {
         name: "devtools:server",
         path: "./commands/"
