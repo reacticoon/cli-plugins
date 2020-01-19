@@ -14,8 +14,8 @@ function CommandStartWebUI(req, res, api) {
       // already spawned
       api.info("git webui already spawned");
     } else {
-      const argv = command.split(" ");
-      api.spawn(argv[0], argv.slice(1));
+      api.runCommand(command);
+
       api.info("Spawning git webui");
     }
     res.send({ success: true, command, url });

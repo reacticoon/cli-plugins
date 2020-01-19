@@ -15,6 +15,20 @@ const ReacticoonCliPluginDev = createReacticoonPlugin(api => {
     {}
   );
 
+  const BuildedServerServerCommand = api.createServerCommand(
+    "BUILD::SERVER",
+    "Start a local server running",
+    "./server-commands/start-build-server",
+    {}
+  );
+
+  const BuildServerCommand = api.createServerCommand(
+    "BUILD::BUILD",
+    "Build the application",
+    "./server-commands/build",
+    {}
+  );
+
   return {
     checkup: ["./checks/checkReacticoonRouting"],
     generators: [],
@@ -26,9 +40,18 @@ const ReacticoonCliPluginDev = createReacticoonPlugin(api => {
       {
         name: "build:info",
         path: "./commands/"
+      },
+      {
+        name: "build:server",
+        path: "./commands/"
       }
     ],
-    serverCommands: [LaunchEditorServerCommand, BuildInfoServerCommand],
+    serverCommands: [
+      LaunchEditorServerCommand,
+      BuildInfoServerCommand,
+      BuildedServerServerCommand,
+      BuildServerCommand
+    ],
     overrides: "./overrides"
   };
 });
