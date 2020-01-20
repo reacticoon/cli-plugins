@@ -29,6 +29,34 @@ const ReacticoonCliPluginDev = createReacticoonPlugin(api => {
     {}
   );
 
+  const RunUnitTestsCommand = api.createServerCommand(
+    "TESTS::UNIT::RUN",
+    "Run unit tests",
+    "./server-commands/run-unit-tests",
+    {}
+  );
+
+  const RunIntegrationTestsCommand = api.createServerCommand(
+    "TESTS::INTEGRATION::RUN",
+    "Run integration tests",
+    "./server-commands/run-integration-tests",
+    {}
+  );
+
+  const RunTestCoverageCommand = api.createServerCommand(
+    "TESTS::COVERAGE::RUN",
+    "Run tests coverage",
+    "./server-commands/run-integration-tests",
+    {}
+  );
+
+  const AllureOpenServerCommand = api.createServerCommand(
+    "TESTS::ALLURE::SERVER",
+    "Run tests coverage",
+    "./server-commands/allure-open-server",
+    {}
+  );
+
   return {
     checkup: ["./checks/checkReacticoonRouting"],
     generators: [],
@@ -50,7 +78,11 @@ const ReacticoonCliPluginDev = createReacticoonPlugin(api => {
       LaunchEditorServerCommand,
       BuildInfoServerCommand,
       BuildedServerServerCommand,
-      BuildServerCommand
+      BuildServerCommand,
+      RunUnitTestsCommand,
+      RunIntegrationTestsCommand,
+      RunTestCoverageCommand,
+      AllureOpenServerCommand
     ],
     overrides: "./overrides"
   };

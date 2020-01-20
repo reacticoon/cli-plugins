@@ -1,6 +1,6 @@
 const StartBuildServerAction = require("../actions/StartBuildServerAction");
 
-async function StartBuildServer(req, res, api) {
+async function StartBuildServerServerCommand(req, res, api) {
   try {
     const result = await StartBuildServerAction(api);
     res.json(result);
@@ -12,4 +12,4 @@ async function StartBuildServer(req, res, api) {
   }
 }
 
-module.exports = StartBuildServer;
+module.exports = StartBuildServerServerCommand;
