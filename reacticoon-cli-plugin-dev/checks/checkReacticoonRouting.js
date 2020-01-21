@@ -5,7 +5,7 @@ const run = api => {
 
   if (!routes) {
     api.error(
-      true,
+      false,
       `routes are not accessible``Does the sse server correctly running ?`
     );
     return;

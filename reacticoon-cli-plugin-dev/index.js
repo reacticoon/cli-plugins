@@ -57,8 +57,18 @@ const ReacticoonCliPluginDev = createReacticoonPlugin(api => {
     {}
   );
 
+  const PluginsViewIdentityListCommand = api.createServerCommand(
+    "PLUGINS::VIEW::IDENTITY::LIST",
+    "Return the identity data for the given pluginsNames",
+    "./server-commands/PluginsViewIdentityListCommand",
+    {}
+  );
+
   return {
-    checkup: ["./checks/checkReacticoonRouting"],
+    checkup: [
+      "./checks/checkReacticoonRouting",
+      "./checks/checkReacticoonPlugins"
+    ],
     generators: [],
     commands: [
       {
@@ -82,7 +92,8 @@ const ReacticoonCliPluginDev = createReacticoonPlugin(api => {
       RunUnitTestsCommand,
       RunIntegrationTestsCommand,
       RunTestCoverageCommand,
-      AllureOpenServerCommand
+      AllureOpenServerCommand,
+      PluginsViewIdentityListCommand
     ],
     overrides: "./overrides"
   };
