@@ -29,7 +29,7 @@ const run = api => {
     }
     names[pluginName] = true;
 
-    if (pluginName === identity.name) {
+    if (pluginName !== identity.name) {
       api.error(
         false,
         `${header} name is valid`,

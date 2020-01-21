@@ -1,8 +1,13 @@
+const isEmpty = require("lodash/isEmpty");
+
 function GetPluginIdentity(pluginName, api) {
   const pluginPath = api.getPaths().getViewPluginDirectory(pluginName);
 
+  const readmePath = `${pluginPath}/README.md`;
+  const hasReadme = api.fileExists(readmePath);
+
   let logoPath = `${pluginPath}/logo.svg`;
-  let hasLogo = api.fileExists(logoPath);
+  const hasLogo = api.fileExists(logoPath);
 
   // TODO: warn if name / description and package.json#description are not the same?
   const pluginPackageJson = api.readJsonFile(`${pluginPath}/package.json`);
@@ -18,6 +23,7 @@ function GetPluginIdentity(pluginName, api) {
     //
     // "homepage": "https://github.com/reacticoon/reacticoon-plugins/reacticoon-plugin-ci#readme"
     //
+    hasHomepage: !isEmpty(pluginPackageJson.homepage),
     homepage: pluginPackageJson.homepage,
     // e.g:
     // repository: {
@@ -26,15 +32,28 @@ function GetPluginIdentity(pluginName, api) {
     // },
     repository: pluginPackageJson.repository,
 
-    isOfficial: true, // TODO:
+    pluginPath,
 
+    //
+    //
+    //
+
+    isOfficial: true, // TODO:
     isInstalled: true, // TODO:
+    hasReadme: true, // TODO:
 
     //
     //
     //
     hasLogo,
-    logoPath: hasLogo ? logoPath : null
+    logoPath: hasLogo ? logoPath : null,
+    logo: hasLogo ? api.readFile(logoPath) : null,
+
+    //
+    //
+    //
+    readmePath,
+    hasReadme
   };
 
   return pluginIdentity;
