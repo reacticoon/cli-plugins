@@ -71,6 +71,20 @@ const ReacticoonCliPluginDev = createReacticoonPlugin(api => {
     {}
   );
 
+  const DependenciesInstalledListCommand = api.createServerCommand(
+    "DEPENDENCIES::INSTALLED::LIST",
+    "Return the app dependencies",
+    "./server-commands/DependenciesInstalledListCommand",
+    {}
+  );
+
+  const DependencyDetailCommand = api.createServerCommand(
+    "DEPENDENCIES::VIEW::DETAIL",
+    "Return the dependency detail",
+    "./server-commands/DependencyDetailCommand",
+    {}
+  );
+
   return {
     checkup: [
       "./checks/checkReacticoonRouting",
@@ -101,7 +115,9 @@ const ReacticoonCliPluginDev = createReacticoonPlugin(api => {
       RunTestCoverageCommand,
       AllureOpenServerCommand,
       PluginsViewIdentityListCommand,
-      PluginsViewIdentityCommand
+      PluginsViewIdentityCommand,
+      DependenciesInstalledListCommand,
+      DependencyDetailCommand
     ],
     overrides: "./overrides"
   };
