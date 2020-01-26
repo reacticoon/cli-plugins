@@ -1,3 +1,3 @@
-# Reacticoon dev
+# Reacticoon cli plugin dev
 
 Homepage

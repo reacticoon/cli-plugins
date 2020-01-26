@@ -1,7 +1,15 @@
 const getDependencyData = require("../utils/getDependencyData");
 
 function GetPluginIdentity(pluginName, api) {
-  const pluginPath = api.getPaths().getViewPluginDirectory(pluginName);
+  const isReacticoonCliPlugin = pluginName.startsWith("reacticoon-cli-plugin-");
+
+  let pluginPath;
+
+  if (isReacticoonCliPlugin) {
+    pluginPath = api.getPaths().getCliPluginDirectory(pluginName);
+  } else {
+    pluginPath = api.getPaths().getViewPluginDirectory(pluginName);
+  }
 
   const logoPath = `${pluginPath}/logo.svg`;
   const hasLogo = api.fileExists(logoPath);

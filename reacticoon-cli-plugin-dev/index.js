@@ -64,6 +64,13 @@ const ReacticoonCliPluginDev = createReacticoonPlugin(api => {
     {}
   );
 
+  const PluginsCliIdentityListCommand = api.createServerCommand(
+    "PLUGINS::CLI::IDENTITY::LIST",
+    "Return the identity data for the registered cli plugins",
+    "./server-commands/PluginsCliIdentityListCommand",
+    {}
+  );
+
   const PluginsViewIdentityCommand = api.createServerCommand(
     "PLUGINS::VIEW::IDENTITY",
     "Return the identity data for the given plugin name",
@@ -117,7 +124,8 @@ const ReacticoonCliPluginDev = createReacticoonPlugin(api => {
       PluginsViewIdentityListCommand,
       PluginsViewIdentityCommand,
       DependenciesInstalledListCommand,
-      DependencyDetailCommand
+      DependencyDetailCommand,
+      PluginsCliIdentityListCommand
     ],
     overrides: "./overrides"
   };

@@ -54,10 +54,27 @@ function getDependencyData(api, appVersion, name, dependencyPathParam) {
     get(dependencyPackageJson, "homepage")
   );
 
+  const isReacticoonCliPlugin = name.startsWith("reacticoon-cli-plugin-");
+
+  // for view plugin, the config is directly on the front
+  let config = {};
+  if (isReacticoonCliPlugin) {
+    config = api.getPluginConfiguration(name);
+  }
+
+  let cliPluginData = {};
+  if (isReacticoonCliPlugin) {
+    cliPluginData = api.getReacticoonPlugin(name);
+  }
+
   return {
     name,
 
     npmView,
+
+    config,
+
+    cliPluginData,
 
     description: get(
       npmView,
@@ -108,7 +125,7 @@ function getDependencyData(api, appVersion, name, dependencyPathParam) {
     keywords: get(npmView, "keywords", get(dependencyPackageJson, "keywords")),
 
     isReacticoonPlugin: name.startsWith("reacticoon-plugin-"),
-    isReacticoonCliPlugin: name.startsWith("reacticoon-cli-plugin-"),
+    isReacticoonCliPlugin,
 
     //
     //
