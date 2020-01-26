@@ -1,6 +1,6 @@
 const LighthouseReportAction = require("../actions/LighthouseReportAction");
 
-async function LighthouseReportHtmlCommand(req, res, api) {
+async function RunLighthouseReportServerCommand(req, res, api) {
   const data = await LighthouseReportAction(api);
 
   if (!data.error) {
@@ -12,4 +12,4 @@ async function LighthouseReportHtmlCommand(req, res, api) {
   }
 }
 
-module.exports = LighthouseReportHtmlCommand;
+module.exports = RunLighthouseReportServerCommand;

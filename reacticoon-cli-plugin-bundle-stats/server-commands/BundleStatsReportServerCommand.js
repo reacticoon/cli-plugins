@@ -1,6 +1,6 @@
 const BundleStatsReportAction = require("../actions/BundleStatsReportAction");
 
-function BundleStatsReportCommand(req, res, api) {
+function BundleStatsReportServerCommand(req, res, api) {
   const data = BundleStatsReportAction(api);
 
   api.openBrowser(data.htmlPath);
@@ -8,4 +8,4 @@ function BundleStatsReportCommand(req, res, api) {
   res.send(data);
 }
 
-module.exports = BundleStatsReportCommand;
+module.exports = BundleStatsReportServerCommand;

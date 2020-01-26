@@ -1,6 +1,6 @@
 /**
  */
-function CommandStartWebUI(req, res, api) {
+function StartWebUIServerCommand(req, res, api) {
   //https://github.com/alberthier/git-webui
   const command = api.getOption("webui.command", "git webui");
   const url = api.getOption("webui.url", "git webui");
@@ -24,4 +24,4 @@ function CommandStartWebUI(req, res, api) {
   }
 }
 
-module.exports = CommandStartWebUI;
+module.exports = StartWebUIServerCommand;

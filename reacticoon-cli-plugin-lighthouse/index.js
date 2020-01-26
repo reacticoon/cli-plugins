@@ -1,24 +1,23 @@
 const createReacticoonPlugin = require("create-reacticoon-app/plugin/createReacticoonPlugin");
 
-const ReacticoonCliPluginLighthouse = createReacticoonPlugin(api => {
-  const runLighthouseReportCommand = api.createServerCommand(
-    "LIGHTHOUSE::REPORT",
-    "Generate html lighthouse report",
-    "./server-commands/lighthouse-report",
-    {}
-  );
-
-  return {
-    checkup: [],
-    generators: [],
-    commands: [
-      {
-        name: "lighthouse:report",
-        path: "./commands/"
-      }
-    ],
-    serverCommands: [runLighthouseReportCommand]
-  };
-});
+const ReacticoonCliPluginLighthouse = createReacticoonPlugin(api => ({
+  checkup: [],
+  generators: [],
+  commands: [
+    api.createCommand({
+      name: "lighthouse:report",
+      description: "Generate a lighthouse report for the builded website",
+      path: "./commands/"
+    })
+  ],
+  serverCommands: [
+    api.createServerCommand(
+      "LIGHTHOUSE::REPORT",
+      "Generate html lighthouse report",
+      "./server-commands/RunLighthouseReportServerCommand",
+      {}
+    )
+  ]
+}));
 
 module.exports = ReacticoonCliPluginLighthouse;

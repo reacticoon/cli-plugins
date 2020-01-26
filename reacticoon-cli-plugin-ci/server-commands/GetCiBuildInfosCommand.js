@@ -3,7 +3,7 @@ var travis = new Travis({
   version: "2.0.0"
 });
 
-function CommandTravisBuildInfo(req, res) {
+function GetCiBuildInfosCommand(req, res) {
   // https://github.com/pwmckenna/node-travis-ci
   const { buildId, ownerName, repoName } = req.body.payload;
   travis
@@ -15,4 +15,4 @@ function CommandTravisBuildInfo(req, res) {
     });
 }
 
-module.exports = CommandTravisBuildInfo;
+module.exports = GetCiBuildInfosCommand;

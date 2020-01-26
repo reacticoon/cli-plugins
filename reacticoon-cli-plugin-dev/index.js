@@ -1,134 +1,121 @@
 const createReacticoonPlugin = require("create-reacticoon-app/plugin/createReacticoonPlugin");
 
-const ReacticoonCliPluginDev = createReacticoonPlugin(api => {
-  const LaunchEditorServerCommand = api.createServerCommand(
-    "DEV_TOOLS::LAUNCH_EDITOR",
-    "Launch code on code editor",
-    "./server-commands/launch-editor",
-    {}
-  );
+const ReacticoonCliPluginDev = createReacticoonPlugin(api => ({
+  checkup: [
+    "./checks/checkReacticoonRouting",
+    "./checks/checkReacticoonPlugins",
+    "./checks/checkReacticoonConfig",
+    "./checks/checkCreateReacticoonApp",
+    "./checks/checkReactVersion",
+    "./checks/checkReacticoon"
+  ],
+  generators: [
+    api.createGenerator({
+      name: "Module generation",
+      description: "Generates modules",
+      path: "./generators/module/generate-module.js"
+    })
+  ],
+  commands: [
+    api.createCommand({
+      name: "devtools:server",
+      description: "Run dev tools server",
+      path: "./commands/"
+    }),
 
-  const BuildInfoServerCommand = api.createServerCommand(
-    "BUILD::INFO",
-    "Retrieve info about the last build",
-    "./server-commands/build-info",
-    {}
-  );
+    api.createCommand({
+      name: "build:info",
+      description: "Retrieve data about the last build",
+      path: "./commands/"
+    }),
 
-  const BuildedServerServerCommand = api.createServerCommand(
-    "BUILD::SERVER",
-    "Start a local server running",
-    "./server-commands/start-build-server",
-    {}
-  );
+    api.createCommand({
+      name: "build:server",
+      description: "Run a local server for the builded website",
+      path: "./commands/"
+    })
+  ],
+  serverCommands: [
+    api.createServerCommand(
+      "DEV_TOOLS::LAUNCH_EDITOR",
+      "Launch code on code editor",
+      "./server-commands/LaunchEditorServerCommand"
+    ),
 
-  const BuildServerCommand = api.createServerCommand(
-    "BUILD::BUILD",
-    "Build the application",
-    "./server-commands/build",
-    {}
-  );
+    api.createServerCommand(
+      "BUILD::INFO",
+      "Retrieve info about the last build",
+      "./server-commands/BuildInfoServerCommand"
+    ),
 
-  const RunUnitTestsCommand = api.createServerCommand(
-    "TESTS::UNIT::RUN",
-    "Run unit tests",
-    "./server-commands/run-unit-tests",
-    {}
-  );
+    api.createServerCommand(
+      "BUILD::SERVER",
+      "Start a local server running",
+      "./server-commands/StartBuildServerServerCommand"
+    ),
 
-  const RunIntegrationTestsCommand = api.createServerCommand(
-    "TESTS::INTEGRATION::RUN",
-    "Run integration tests",
-    "./server-commands/run-integration-tests",
-    {}
-  );
+    api.createServerCommand(
+      "BUILD::BUILD",
+      "Build the application",
+      "./server-commands/BuildServerCommand"
+    ),
 
-  const RunTestCoverageCommand = api.createServerCommand(
-    "TESTS::COVERAGE::RUN",
-    "Run tests coverage",
-    "./server-commands/run-integration-tests",
-    {}
-  );
+    api.createServerCommand(
+      "TESTS::UNIT::RUN",
+      "Run unit tests",
+      "./server-commands/RunUnitTestsCommand"
+    ),
 
-  const AllureOpenServerCommand = api.createServerCommand(
-    "TESTS::ALLURE::SERVER",
-    "Run tests coverage",
-    "./server-commands/allure-open-server",
-    {}
-  );
+    api.createServerCommand(
+      "TESTS::INTEGRATION::RUN",
+      "Run integration tests",
+      "./server-commands/RunIntegrationTestsCommand"
+    ),
 
-  const PluginsViewIdentityListCommand = api.createServerCommand(
-    "PLUGINS::VIEW::IDENTITY::LIST",
-    "Return the identity data for the given pluginsNames",
-    "./server-commands/PluginsViewIdentityListCommand",
-    {}
-  );
+    api.createServerCommand(
+      "TESTS::COVERAGE::RUN",
+      "Run tests coverage",
+      "./server-commands/RunCoverageTestsCommand"
+    ),
 
-  const PluginsCliIdentityListCommand = api.createServerCommand(
-    "PLUGINS::CLI::IDENTITY::LIST",
-    "Return the identity data for the registered cli plugins",
-    "./server-commands/PluginsCliIdentityListCommand",
-    {}
-  );
+    api.createServerCommand(
+      "TESTS::ALLURE::SERVER",
+      "Run tests coverage",
+      "TESTS::ALLURE::SERVER",
+      "./server-commands/AllureOpenServerCommand"
+    ),
 
-  const PluginsViewIdentityCommand = api.createServerCommand(
-    "PLUGINS::VIEW::IDENTITY",
-    "Return the identity data for the given plugin name",
-    "./server-commands/PluginsViewIdentityCommand",
-    {}
-  );
+    api.createServerCommand(
+      "PLUGINS::VIEW::IDENTITY::LIST",
+      "Return the identity data for the given pluginsNames",
+      "./server-commands/PluginsViewIdentityListCommand"
+    ),
 
-  const DependenciesInstalledListCommand = api.createServerCommand(
-    "DEPENDENCIES::INSTALLED::LIST",
-    "Return the app dependencies",
-    "./server-commands/DependenciesInstalledListCommand",
-    {}
-  );
+    api.createServerCommand(
+      "PLUGINS::CLI::IDENTITY::LIST",
+      "Return the identity data for the registered cli plugins",
+      "./server-commands/PluginsCliIdentityListCommand"
+    ),
 
-  const DependencyDetailCommand = api.createServerCommand(
-    "DEPENDENCIES::VIEW::DETAIL",
-    "Return the dependency detail",
-    "./server-commands/DependencyDetailCommand",
-    {}
-  );
+    api.createServerCommand(
+      "PLUGINS::VIEW::IDENTITY",
+      "Return the identity data for the given plugin name",
+      "./server-commands/PluginsViewIdentityCommand"
+    ),
 
-  return {
-    checkup: [
-      "./checks/checkReacticoonRouting",
-      "./checks/checkReacticoonPlugins"
-    ],
-    generators: [],
-    commands: [
-      {
-        name: "devtools:server",
-        path: "./commands/"
-      },
-      {
-        name: "build:info",
-        path: "./commands/"
-      },
-      {
-        name: "build:server",
-        path: "./commands/"
-      }
-    ],
-    serverCommands: [
-      LaunchEditorServerCommand,
-      BuildInfoServerCommand,
-      BuildedServerServerCommand,
-      BuildServerCommand,
-      RunUnitTestsCommand,
-      RunIntegrationTestsCommand,
-      RunTestCoverageCommand,
-      AllureOpenServerCommand,
-      PluginsViewIdentityListCommand,
-      PluginsViewIdentityCommand,
-      DependenciesInstalledListCommand,
-      DependencyDetailCommand,
-      PluginsCliIdentityListCommand
-    ],
-    overrides: "./overrides"
-  };
-});
+    api.createServerCommand(
+      "DEPENDENCIES::INSTALLED::LIST",
+      "Return the app dependencies",
+      "./server-commands/DependenciesInstalledListCommand"
+    ),
+
+    api.createServerCommand(
+      "DEPENDENCIES::VIEW::DETAIL",
+      "Return the dependency detail",
+      "./server-commands/DependencyDetailCommand"
+    )
+  ],
+  overrides: "./overrides"
+}));
 
 module.exports = ReacticoonCliPluginDev;

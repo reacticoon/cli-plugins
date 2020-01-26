@@ -3,7 +3,7 @@ var travis = new Travis({
   version: "2.0.0"
 });
 
-function CommandTravisInfo(req, res) {
+function GetCiRepositoryInfosServerCommand(req, res) {
   const { ownerName, repoName } = req.body.payload;
 
   travis.repos(ownerName, repoName).get(function(err, ciResponse) {
@@ -12,4 +12,4 @@ function CommandTravisInfo(req, res) {
   });
 }
 
-module.exports = CommandTravisInfo;
+module.exports = GetCiRepositoryInfosServerCommand;
