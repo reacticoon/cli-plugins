@@ -6,9 +6,7 @@ async function StartBuildServerServerCommand(req, res, api) {
     res.json(result);
   } catch (e) {
     console.error(e);
-    res.status(400).send({
-      error: true
-    });
+    res.status(400).send(result);
   }
 }
 

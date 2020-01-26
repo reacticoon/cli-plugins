@@ -25,7 +25,7 @@ async function StartBuildServerAction(
 
   const port = 5000;
 
-  async function runServer() {
+  async function runServer(api) {
     return new Promise((resolve, reject) => {
       let alreadyRunning = false;
       try {
@@ -76,13 +76,25 @@ async function StartBuildServerAction(
       if (!alreadyRunning) {
         server.listen(port, error => {
           if (error) {
+            api.setCacheValue("BUILD_SERVER", {
+              isRunning: false
+            });
+
             resolve({
-              error: true
+              error: true,
+              errorMessage: "Failed to start the server",
+              errorCode: "BUILD_SERVER_START_FAILED"
             });
             return;
           }
 
           api.info(`Running at http://localhost:${port}`, "build");
+
+          api.setCacheValue("BUILD_SERVER", {
+            isRunning: true,
+            localAddress,
+            networkAddress
+          });
 
           resolve({
             alreadyRunning,
@@ -91,6 +103,12 @@ async function StartBuildServerAction(
           });
         });
       } else {
+        api.setCacheValue("BUILD_SERVER", {
+          isRunning: true,
+          localAddress,
+          networkAddress
+        });
+
         resolve({
           alreadyRunning,
           localAddress,
@@ -100,7 +118,7 @@ async function StartBuildServerAction(
     });
   }
 
-  return await runServer();
+  return await runServer(api);
 }
 
 module.exports = StartBuildServerAction;

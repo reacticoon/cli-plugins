@@ -1,9 +1,13 @@
 const LighthouseReportAction = require("../actions/LighthouseReportAction");
 
-const LighthouseReportCommand = api => {
-  const data = LighthouseReportAction(api);
+async function LighthouseReportCommand(api) {
+  const data = await LighthouseReportAction(api);
 
-  api.openBrowser(data.htmlPath);
-};
+  if (!data.error) {
+    api.openBrowser(data.htmlPath);
+  } else {
+    api.error(data.errorMessage, "lightouse");
+  }
+}
 
 module.exports = LighthouseReportCommand;
