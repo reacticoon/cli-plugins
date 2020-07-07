@@ -57,7 +57,7 @@ class ReacticoonBuildWebpackPlugin {
 
 module.exports = {
   options: {},
-  rewire: function rewirePluginDev(config, env, api) {
+  rewire: function rewirePluginDev(api, config, options, env) {
     !env.isDev &&
       api.injectWebpackPlugin(new ReacticoonBuildWebpackPlugin(api), config);
   }

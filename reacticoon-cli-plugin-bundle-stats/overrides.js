@@ -4,14 +4,14 @@ module.exports = isDev => ({
       BUNDLE_STATS: isDev ? "DEV_MODE" : "PROD_MODE"
     }
   },
-  rewire: function rewireBundleStats(config, env, api) {
+  rewire: function rewireBundleStats(api, config, options, env) {
     const { BundleStatsWebpackPlugin } = require("bundle-stats");
 
-    const options = {
+    const opts = {
       html: true,
       json: true
     };
 
-    api.injectWebpackPlugin(new BundleStatsWebpackPlugin(options), config);
+    api.injectWebpackPlugin(new BundleStatsWebpackPlugin(opts), config);
   }
 });
