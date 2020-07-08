@@ -1,7 +1,7 @@
-module.exports = isDev => ({
+module.exports = isEnvDev => ({
   options: {
     env: {
-      BUNDLE_STATS: isDev ? "DEV_MODE" : "PROD_MODE"
+      BUNDLE_STATS: isEnvDev ? "DEV_MODE" : "PROD_MODE"
     }
   },
   rewire: function rewireBundleStats(api, config, options, env) {
